@@ -2,10 +2,10 @@
 
 
 ## Resumo
-  O presente repositório visa demonstrar todo o processo de construção de um drone modelo F450, descrevendo os passos realizados desde a seleção dos
+  <p> O presente repositório visa demonstrar todo o processo de construção de um drone modelo F450, descrevendo os passos realizados desde a seleção dos
 materiais, desenvolvimento do sistema de controle PID, até chegar aos testes que incluem voo.
   Primeiro, será apresentado a definição da arquitetura, junto ao levantamento de requisitos e fluxograma de desenvolvimento que engloba todos os passos do
-projeto. Logo depois, é apresentada a metodologia de desenvolvimento da PCB e o roteiro de testes aplicados para a sintonia do controle PID.
+projeto. Logo depois, é apresentada a metodologia de desenvolvimento da PCB e o roteiro de testes aplicados para a sintonia do controle PID. </p>
 
 ### Definição da arquitetura
   A arquitetura do projeto se baseia no frame F450, que é um quadcóptero (aeronave impulsionada por quatro motores) muito popular na comunidade maker
