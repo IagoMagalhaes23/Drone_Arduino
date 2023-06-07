@@ -139,16 +139,13 @@ Com base nos resultados obtidos por meio dos testes, percebe-se que o trabalho p
 A conclusão desta etapa é que, conseguimos levantar voo e manter estabilidade mesmo com interferência do vento. Quando tentamos realizar algumas curvas o sistema consegue continuar estável, mas se no retorno para o ponto inicial o drone passar por alguma interferência ele sofre uma desestabilização, mas retorna ao normal em um curto período. Os requisitos de hardware e software foram atendidos, porém, os parâmetros de controle PID ainda podem ser melhorados e ficará como sugestão de melhoria em um possível trabalho futuro.
 
 ### BIBLIOGRAFIA
-[1] O QUE são drones e quais regras você precisa seguir para pilotar no Brasil. [S. l.], 10 dez. 2013. Disponível em: https://tecnoblog.net/responde/tudo-sobre-drones/. Acesso em: 10 dez. 2022.
-[2] PROJETO DE DRONE DE BAIXO CUSTO PARA MONITORAMENTO EM ÁREAS AGRÍCOLAS. 2021. Monografia (Bacharel em Engenharia de Biossistemas) - Trabalho de Conclusão de Curso, [S. l.], 2021.
-ANATOMIA de um Disponível Drone. l.].
-[3] em: [S. 2020.                                Disponível https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=Drones%20(q uadric%C3%B3pteros)%20tem%202%20motores,oposta%20e%20de%20mesma% 20intensidade. Acesso em: 10 dez. 2022.
-[4] INTRODUÇÃO aos drones: O que são e como funcionam os drones?. [S. l.], 17 ago. em: ANATOMIA de um Disponível https://www.filipeflop.com/blog/o-que-e-como-funciona-um-drone/.  Acesso  em:  10 dez. 2022.
-[5] CONTROLE PID: rompendo a barreira do tempo. [S. l.], 9 jun. 2020. Disponível em:
-https://www.novus.com.br/blog/artigo-controle-pid-rompendo-a-barreira-do-tempo/. Acesso em: 10 dez. 2022.
-[6] SISTEMAS de controle : princípios e métodos de projeto. In: SISTEMAS de controle : princípios e métodos de projeto. [S. l.: s. n.], 2005.
-Drone. l.]. em:
-[7] [S.https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=A%20controla dora%20de%20voo%20recebe,um%20dia%20de%20muito%20vento. Acesso em: 10 dez. 2022.
-[8] ACELERÔMETRO e Giroscópio MPU6050. [S. l.], 28 abr. 2015. Disponível em: https://www.arduinoecia.com.br/acelerometro-giroscopio-mpu6050-arduino/. Acesso em: 11 dez. 2022.
+[1] O QUE são drones e quais regras você precisa seguir para pilotar no Brasil. [S. l.], 10 dez. 2013. Disponível em: https://tecnoblog.net/responde/tudo-sobre-drones/. Acesso em: 10 dez. 2022. <br>
+[2] PROJETO DE DRONE DE BAIXO CUSTO PARA MONITORAMENTO EM ÁREAS AGRÍCOLAS. 2021. Monografia (Bacharel em Engenharia de Biossistemas) - Trabalho de Conclusão de Curso, [S. l.], 2021. <br>
+[3] ANATOMIA de um Drone. [S. L.] Disponível em: https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=Drones%20(q uadric%C3%B3pteros)%20tem%202%20motores,oposta%20e%20de%20mesma% 20intensidade. Acesso em: 10 dez. 2022. <br>
+[4] INTRODUÇÃO aos drones: O que são e como funcionam os drones?. [S. l.], 17 ago. 2020. Disponível em: https://www.filipeflop.com/blog/o-que-e-como-funciona-um-drone/.  Acesso  em:  10 dez. 2022. <br>
+[5] CONTROLE PID: rompendo a barreira do tempo. [S. l.], 9 jun. 2020. Disponível em: https://www.novus.com.br/blog/artigo-controle-pid-rompendo-a-barreira-do-tempo/. Acesso em: 10 dez. 2022. <br>
+[6] SISTEMAS de controle : princípios e métodos de projeto. In: SISTEMAS de controle : princípios e métodos de projeto. [S. l.: s. n.], 2005. <br>
+[7] ANATOMIA de um Drone [S. L.]. Disponível em: https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=A%20controla dora%20de%20voo%20recebe,um%20dia%20de%20muito%20vento. Acesso em: 10 dez. 2022. <br>
+[8] ACELERÔMETRO e Giroscópio MPU6050. [S. l.], 28 abr. 2015. Disponível em: https://www.arduinoecia.com.br/acelerometro-giroscopio-mpu6050-arduino/. Acesso em: 11 dez. 2022. <br>
 [9] TUTORIAL: Acelerômetro MPU6050 com Arduino. [S. l.], 30 set. 2014. Disponível em: https://www.filipeflop.com/blog/tutorial-acelerometro-mpu6050-arduino/. Acesso em: 11 dez. 2022.
 [10] Project YMFC-AL - The Arduino auto-level quadcopter. [S. I.], 30 abr. 2017. Disponível em: http://www.brokking.net/ymfc-al_main.html. Acesso em: 11 dez. 2022.
