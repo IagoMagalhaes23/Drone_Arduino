@@ -147,5 +147,5 @@ A conclusão desta etapa é que, conseguimos levantar voo e manter estabilidade 
 [6] SISTEMAS de controle : princípios e métodos de projeto. In: SISTEMAS de controle : princípios e métodos de projeto. [S. l.: s. n.], 2005. <br>
 [7] ANATOMIA de um Drone [S. L.]. Disponível em: https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=A%20controla dora%20de%20voo%20recebe,um%20dia%20de%20muito%20vento. Acesso em: 10 dez. 2022. <br>
 [8] ACELERÔMETRO e Giroscópio MPU6050. [S. l.], 28 abr. 2015. Disponível em: https://www.arduinoecia.com.br/acelerometro-giroscopio-mpu6050-arduino/. Acesso em: 11 dez. 2022. <br>
-[9] TUTORIAL: Acelerômetro MPU6050 com Arduino. [S. l.], 30 set. 2014. Disponível em: https://www.filipeflop.com/blog/tutorial-acelerometro-mpu6050-arduino/. Acesso em: 11 dez. 2022.
-[10] Project YMFC-AL - The Arduino auto-level quadcopter. [S. I.], 30 abr. 2017. Disponível em: http://www.brokking.net/ymfc-al_main.html. Acesso em: 11 dez. 2022.
+[9] TUTORIAL: Acelerômetro MPU6050 com Arduino. [S. l.], 30 set. 2014. Disponível em: https://www.filipeflop.com/blog/tutorial-acelerometro-mpu6050-arduino/. Acesso em: 11 dez. 2022. <br>
+[10] Project YMFC-AL - The Arduino auto-level quadcopter. [S. I.], 30 abr. 2017. Disponível em: http://www.brokking.net/ymfc-al_main.html. Acesso em: 11 dez. 2022. <br>
