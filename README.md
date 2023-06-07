@@ -90,3 +90,65 @@ dispositivo. Isso ocorre porque os motores giram em alta velocidade e as hélice
 desbalanceamento é colocando um pequeno pedaço de fita na hélice e executando o script para analisar a vibração que ela exerce no frame até que se reduza o
 máximo possível, inserindo mais pedaços se necessário. <br>
 
+#### DESENVOLVIMENTO DO SOFTWARE
+O código fonte utilizado na controladora de voo do drone foi desenvolvido utilizando a linguagem C. Com o objetivo de simplificar o projeto final, apenas o script de controle de voo será comentado, já que ele foi desenvolvido com as modificações necessárias pela equipe.
+O código final utilizou basicamente as bibliotecas EEPROM e Wire, sendo estas para ler a memória EEPROM e para comunicação I2C. Nas definições de pinos, o PORTD foi utilizado para controle dos ESC’s e o PORTB para o receptor e led de indicação de status.
+Ao iniciar o software, os seguintes passos serão realizados:
+1.  Leitura do conteúdo da memória EEPROM, que armazena as leituras do sensor na etapa de calibração;
+2.  Armazenamento do endereço do sensor MPU6050;
+3.  Definição da velocidade de comunicação do I2C em 400 kHz;
+4.  Set dos pinos 4, 5, 6 e 7 do PORTD como saída;
+5.  Set dos pinos 12 e 13 do PORTB como saída;18
+6.  Acenderá o led;
+7.  Configuração dos registradores do sensor MPU6050;
+8.  Realização da calibração do sensor, capturando 2000 amostras. O led ficará piscando durante o processo, que leva de 5 a 10 segundos;
+9.  Ativação da varredura PCMSK0 para disparar interrupções nos pinos 8, 9, 10 e 11;
+10. Verificação para observar se o stick de velocidade está em zero;
+11. Leitura da tensão da bateria;
+12. Desligamento do led;
+13. Leitura das posições em roll, pitch e yaw através do sensor;
+14. Atualização dos valores de cálculo do PID;
+15. Verificação das posições do stick para armar o drone;
+16. Leitura da tensão da bateria;
+17. Leitura das posições dos stick’s;
+18. Envio de pulsos para os ESC’s.
+Para realizar as interrupções, cálculo do PID, ler dados do sensor, ler dados
+do rádio e para setar os registradores do sensor, foram utilizadas funções. A primeira delas é a interrupção PCINT0, para que toda vez que um valor for lido pelo rádio, ela entrará e a atualizará o valor da posição do stick. A segunda função realiza os cálculos do controle PID, através das leituras das posições do stick e do sensor, a função de controle tenta deixar o drone o mais estável possível. A próxima função, realiza a leitura de valores do sensor usando a biblioteca Wire. A função de leitura de dados do rádio, realiza conversões e atualizações das posições dos sticks em caso de ligações invertidas e transforma o valor da posição em pulsos que podem variar de 1000us até 2000us. E por fim, a função que seta os registradores do sensor MPU6050.
+
+#### SINTONIA DOS PARÂMETROS PID
+Os valores de PID foram obtidos por meio de testes de tentativa e erro. No começo, fizemos um teste com os parâmetros default do código, mas esses parâmetros não conseguiram estabilizar o nosso sistema como esperado, já que todo sistema possui suas particularidades. Então, zeramos todos os valores e ligamos o drone para observar seu comportamento e conseguir analisar quais valores deveriam ser incrementados ou decrementados, conforme os testes.
+Esse processo requer uma rotina árdua de testes, devido ao método de sintonia adotado. Requerendo paciência e bastante observação as mudanças que ocorrem quando os valores de P, I e D são alterados no script. Sendo assim, é necessário realizar uma análise visual para determinar quais combinações atingiram melhores resultados e quais aspectos e propriedades poderiam ser alterados, em busca de melhorias.
+Por fim, após uma longa sequência de testes e análises, foi possível utilizar nos eixos roll e pitch os valores de P = 1.0, I = 0.00001 e D = 0.0. Já no eixo yaw os valores ficaram em P = 0.0, I = 0.0 e D = 0.0, ou seja, sem aplicação do controle PID neste eixo.
+
+#### ROTINA DE TESTES
+Inicialmente, realizamos testes em laboratório, porém esses testes não foram bem sucedidos pois não tínhamos uma base de fixação para colocar o drone e o mesmo estava inclinando e indo para frente quando tentamos levantar voo. Então optamos  por  construir  uma  base  para  que  fosse  possível  fixar  e  testar  os movimentos de voo.
+
+![image](https://github.com/IagoMagalhaes23/Drone_Arduino/assets/65053026/339eefca-90d8-4801-ac89-d74bc3d99189)
+
+Os primeiros testes com a base foram feitos em ambiente sem interferência externa de vento, as perturbações causadas durante o voo foram feitas por nós mesmos, apenas balançando um pouco o drone para conseguir ajustar os valores de PID.
+Outro teste foi realizado colocando um cabo de vassoura no meio da carcaça do drone para ver se ele continuaria estável com o aumento de peso e para causarmos maiores perturbações sem o risco de o mesmo girar e quebrar algum componente. Nesse teste percebemos que ele tentava e até conseguia ficar estável por um curto período, mas logo desestabilizava, então fizemos alguns ajustes nos valores de D.
+Após os testes anteriores, decidimos ver como nosso drone se comportaria em uma base em que ele tivesse maior liberdade de voo e com interferência de vento, representada na figura 15. Então fomos para uma área externa e percebemos que os valores de PID que ajustamos para o ambiente anterior não estavam conseguindo estabilizar o drone no novo ambiente de testes. Tentamos fazer alguns ajustes nos parâmetros, mas como não conseguimos estabilizá-lo com base nos parâmetros anteriores, decidimos refazer os testes de estabilização de tentativa e erro para as novas circunstâncias.
+
+![image](https://github.com/IagoMagalhaes23/Drone_Arduino/assets/65053026/f255293c-bcf1-4361-907f-a426a50688e5)
+
+A partir daí, foi mais difícil achar os valores de PID, pois o drone tinha mais mobilidade e o vento atrapalhava bastante. Então decidimos fazer uma calibração mais genérica, ou seja, a estabilidade do drone não seria tão boa, mas dessa forma ele conseguiria se estabilizar mesmo quando houvesse um vento mais forte, ou caso houvesse uma batida forte durante o pouso. E para cada teste aumentamos um pouco a corda que amarrava o drone, para ver como ele se comportava em diferentes alturas e consequentemente com maior grau de liberdade.
+E para os testes finais, levamos o drone para um espaço onde o chão fosse macio e não houvesse obstáculos, para que ele pudesse voar livremente e caso ele caísse, os danos seriam leves. Nesse teste, também prendemos o drone com uma corda, porém dessa vez a corda era bem maior e servia apenas como precaução para ele não ir muito alto. Infelizmente não obtivemos sucesso no último teste, pois como nossa PCB havia quebrado e nessa fase o circuito estava montado em uma protoboard, creio que ela não estava suportando a demanda de corrente e conexões utilizando jumpers apresentavam falhas quando o vento gerado pelas hélices ficava mais forte.
+
+### CONCLUSÃO
+Com base nos resultados obtidos por meio dos testes, percebe-se que o trabalho proposto necessita de bastante tempo e dedicação para realizar seus testes e para pesquisar vários métodos diferentes que possam solucionar os problemas que surgem no meio do processo. Pois mesmo utilizando um trabalho bem detalhado como base, as situações de teste e de desenvolvimento acabam nunca sendo as mesas, portanto problemas diferentes surgem e são solucionados de maneiras bem diferentes das que foram utilizadas.
+A conclusão desta etapa é que, conseguimos levantar voo e manter estabilidade mesmo com interferência do vento. Quando tentamos realizar algumas curvas o sistema consegue continuar estável, mas se no retorno para o ponto inicial o drone passar por alguma interferência ele sofre uma desestabilização, mas retorna ao normal em um curto período. Os requisitos de hardware e software foram atendidos, porém, os parâmetros de controle PID ainda podem ser melhorados e ficará como sugestão de melhoria em um possível trabalho futuro.
+
+### BIBLIOGRAFIA
+[1] O QUE são drones e quais regras você precisa seguir para pilotar no Brasil. [S. l.], 10 dez. 2013. Disponível em: https://tecnoblog.net/responde/tudo-sobre-drones/. Acesso em: 10 dez. 2022.
+[2] PROJETO DE DRONE DE BAIXO CUSTO PARA MONITORAMENTO EM ÁREAS AGRÍCOLAS. 2021. Monografia (Bacharel em Engenharia de Biossistemas) - Trabalho de Conclusão de Curso, [S. l.], 2021.
+ANATOMIA de um Disponível Drone. l.].
+[3] em: [S. 2020.                                Disponível https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=Drones%20(q uadric%C3%B3pteros)%20tem%202%20motores,oposta%20e%20de%20mesma% 20intensidade. Acesso em: 10 dez. 2022.
+[4] INTRODUÇÃO aos drones: O que são e como funcionam os drones?. [S. l.], 17 ago. em: ANATOMIA de um Disponível https://www.filipeflop.com/blog/o-que-e-como-funciona-um-drone/.  Acesso  em:  10 dez. 2022.
+[5] CONTROLE PID: rompendo a barreira do tempo. [S. l.], 9 jun. 2020. Disponível em:
+https://www.novus.com.br/blog/artigo-controle-pid-rompendo-a-barreira-do-tempo/. Acesso em: 10 dez. 2022.
+[6] SISTEMAS de controle : princípios e métodos de projeto. In: SISTEMAS de controle : princípios e métodos de projeto. [S. l.: s. n.], 2005.
+Drone. l.]. em:
+[7] [S.https://www.flypro.com.br/pagina/anatomia-de-um-drone.html#:~:text=A%20controla dora%20de%20voo%20recebe,um%20dia%20de%20muito%20vento. Acesso em: 10 dez. 2022.
+[8] ACELERÔMETRO e Giroscópio MPU6050. [S. l.], 28 abr. 2015. Disponível em: https://www.arduinoecia.com.br/acelerometro-giroscopio-mpu6050-arduino/. Acesso em: 11 dez. 2022.
+[9] TUTORIAL: Acelerômetro MPU6050 com Arduino. [S. l.], 30 set. 2014. Disponível em: https://www.filipeflop.com/blog/tutorial-acelerometro-mpu6050-arduino/. Acesso em: 11 dez. 2022.
+[10] Project YMFC-AL - The Arduino auto-level quadcopter. [S. I.], 30 abr. 2017. Disponível em: http://www.brokking.net/ymfc-al_main.html. Acesso em: 11 dez. 2022.
